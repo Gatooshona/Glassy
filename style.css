@@ -121,8 +121,8 @@ img {
     padding: 0;
 }
 
-.modal-show {
-    display: block;
+.ul-list li {
+    position: relative;
 }
 
 .nav-flex-2 .login-link {
@@ -144,6 +144,10 @@ img {
 .login-link:hover::before,
 .login-link:focus::before {
     background-image: url("img/icon4-dark.svg");
+}
+
+.login-link:hover ~ .login-popup {
+    display: block;
 }
 
 .basket-link:hover::before,
@@ -450,10 +454,17 @@ img {
     border-radius: 70px;
     padding-left: 19px;
     padding-right: 19px;
-    padding-top: 14px;
+    padding-top: 11px;
     padding-bottom: 13px;
     text-decoration: none;
     border: none;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    box-sizing: border-box;
+    width: 130px;
+    height: 44px;
+    margin-left: 10px;
 }
 
 .feedback {
@@ -473,6 +484,10 @@ img {
     padding-right: 25px;
     padding-bottom: 27px;
     position: relative;
+}
+
+.feedback-popup {
+    display: none;
 }
 
 .feedback-button {
@@ -522,14 +537,16 @@ img {
 
 .close-button {
     justify-content: end;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 17px;
     align-items: center;
     box-sizing: border-box;
     font-size: 14px;
     position: absolute;
     right: 20px;
-
+    background-image: url("img/X-big.svg");
+    border: none;
+    background-color: inherit;
 }
 
 .feedback input {
@@ -571,20 +588,23 @@ img {
     border-color: red;
 }
 
-/*.feedback-button {
+.feedback-button {
 font: inherit;
-text-align: center;
+/*text-align: center;*/
 color: var(--basic-white);
-vertical-align: center;
+/*vertical-align: center;*/
 background: linear-gradient(180deg, #F26843 0%, #E74A35 100%);
 box-shadow: 0 2px 2px rgba(172, 16, 0, 0.64);
 border-radius: 70px;
-padding-left: 22px;
-padding-right: 22px;
-padding-top: 15px;
-padding-bottom: 15px;
+padding: 11px 24px 13px 24px;
 text-decoration: none;
-}*/
+    box-sizing: border-box;
+    width: 140px;
+    height: 44px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+}
 
 .inbox input {
     font: inherit;
@@ -601,6 +621,7 @@ text-decoration: none;
     /*padding-top: 15px;*/
     width: 368px;
     height: 44px;
+    box-sizing: border-box;
 }
 
 .inbox input:focus {
@@ -738,7 +759,7 @@ text-decoration: none;
     background: linear-gradient(180deg, #F26843 0%, #E74A35 100%);
     box-shadow: 0 2px 2px rgba(172, 16, 0, 0.64);
     border-radius: 70px;
-    padding: 13px 28px;
+    padding: 11px 28px;
     text-decoration: none;
     border: none;
     width: 253px;
@@ -762,6 +783,10 @@ text-decoration: none;
 .contacts-button:active {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.07)), linear-gradient(180deg, #F26843 0%, #E74A35 100%);
     box-shadow: inset 0 2px 2px #942718;
+}
+
+.contacts-button:hover ~ .feedback-popup {
+    display: block;
 }
 
 .search-box {
@@ -788,8 +813,12 @@ text-decoration: none;
     height: 44px;
 }
 
-.login {
+.login-popup {
+    position: absolute;
+    display: none;
     font: inherit;
+    top: 40px;
+    left: 0;
     background-color: var(--input-box);
     color: var(--basic-dark);
     font-size: 13px;
@@ -830,7 +859,7 @@ text-decoration: none;
     align-items: start;
 }
 
-.login input {
+.login-popup input {
     font: inherit;
     background-color: var(--basic-white);
     color: var(--basic-dark);
@@ -848,7 +877,7 @@ text-decoration: none;
     box-sizing: border-box;
 }
 
-.login a {
+.login-popup a {
     font-size: 13px;
     line-height: 15px;
     font-weight: 400;
@@ -856,8 +885,8 @@ text-decoration: none;
     color: var(--basic-dark);
 }
 
-.login a:hover,
-.login a:focus {
+.login-popup a:hover,
+.login-popup a:focus {
     color: var(--pink-for-href);
 }
 
@@ -1832,3 +1861,38 @@ input[type="radio"].visually-hidden {
 }
 
 
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-10px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(10px);
+    }
+}
+
+.modal-error {
+    animation: shake 0.6s;
+}
+
+.modal-show {
+    display: block;
+    animation: bounce 0.6s;
+}
+
+.feedback-modal-show {
+    display: block;
+    animation:
+}
