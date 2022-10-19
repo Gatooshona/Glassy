@@ -1,62 +1,40 @@
-var loginLink = document.querySelector(".login-link");
+
+/**
+ * 1. Находит селектором попап логина
+ * 2. При клике на него добавляем класс с цсс дисплей блок
+ * 3. При клике на облавсть вне попапа, удаляем класс видимости с попапа логина
+ * 4. При нажатии на самбит, созраняет логин в local storage и отправляем данные (при сабмите происходит автоматом)
+ * */
+
+var loginOpenLink = document.querySelector(".login-link");
 var loginPopup = document.querySelector(".login-popup");
-
-var loginClose = loginPopup.querySelector(".modal-close");
-var loginForm = loginPopup.querySelector(".login-form");
-var loginLogin = loginPopup.querySelector(".login-input");
-var loginPassword = loginPopup.querySelector(".login-password");
-
-var isStorageSupport = true;
-var storage = "";
+var loginName = document.querySelector(".login-input");
 
 
-try {
-    storage = localStorage.getItem("login");
-} catch (err) {
-    isStorageSupport = false;
-}
 
-loginLink.addEventListener("click", function (evt) {
+loginOpenLink.addEventListener("click", function (evt) {
     evt.preventDefault();
-    loginPopup.classList.add("modal-show");
-    loginLogin.focus();
-
-    if (storage) {
-        loginLogin.value = storage;
-        loginPassword.focus();
-    } else {
-        loginLogin.focus();
-    }
-});
-
-loginClose.addEventListener("click", function (evt) {
-    evt.preventDefault();
-    loginPopup.classList.remove("modal-show");
-    loginPopup.classList.remove("modal-error");
-});
-
-loginForm.addEventListener("submit", function (evt) {
-    if (!loginLogin.value || !loginPassword.value) {
-        evt.preventDefault();
-        loginPopup.classList.add("modal-error");
-        loginPopup.offsetWidth = loginPopup.offsetWidth;
-    } else {
-        if (isStorageSupport) {
-            localStorage.setItem("login", loginLogin.value);
-        }
-    }
-});
+    loginPopup.classList.add("login-modal-show");
+    modalDark.classList.add("modal-dark-show");
+    loginName.focus();
+})
 
 window.addEventListener("keydown", function (evt) {
-    console.log('>>>>>>')
     if (evt.keyCode === 27) {
-        if (loginPopup.classList.contains("modal-show")) {
+        if (loginPopup.classList.contains("login-modal-show")) {
             evt.preventDefault();
-            loginPopup.classList.remove("modal-show");
-            loginPopup.classList.remove("modal-error");
+            loginPopup.classList.remove("login-modal-show");
+            modalDark.classList.remove("modal-dark-show");
         }
     }
 });
+
+modalDark.addEventListener("click", function (evt) {
+    loginPopup.classList.remove("login-modal-show");
+    modalDark.classList.remove("modal-dark-show");
+})
+
+
 
 
 
